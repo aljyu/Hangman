@@ -1,3 +1,93 @@
 <!DOCTYPE html>
-Hi
+<head>
+	<title>
+		Hangman
+	</title>
+</head>
+<body>
+	<script>
+		// Create an array of words
+		var options = [
+			"hand",
+			"wrong",
+			"late",
+			"fang",
+			"clip",
+			"rub",
+			"perfect",
+			"private",
+			"guitar",
+			"grape",
+			"stupid"
+		];
+		// Set "begin" to be the status of the first game
+		var begin = true;
+        // Set "again" to be the status of a new game
+        var again = true;
+
+		// Game loop
+		while (begin == true) {
+			// If the game is ongoing
+			if ((begin == true) && (again == true)) {
+				// Choose a random word by multiplying the results of Math.random() with the length of the options array and taking the floor of that result to find the random index positon of the options array
+				var word = options[Math.floor(Math.random() * options.length)]
+				// Find the length of the word
+				var wordLength = word.length;
+				// Create a blank array for the chosen word
+				var selection = [];
+				// Determine how many letters have yet to be filled in
+				var remainder = wordLength;
+				// Set-up the maximum number of guesses the user gets before they lose
+				var numOfGuess = 3;
+				// Set up the board
+				for (var i = 0; i < wordLength; i++) {
+					selection[i] = "_";
+				}
+                again = false;
+			}
+			else {
+				// Keep track whether or not the user's guess is part of the selected word
+				var correct = false;
+				// Take in the user's guess
+				var guess = prompt("Choose a letter");
+				// Ensure that the user selected only 1 letter
+				while (guess.length != 1) {
+					alert("Invalid guess! Please choose only 1 letter!");
+					guess = prompt("Choose a letter");
+				}
+				for (var i = 0; i < wordLength; i++) {
+					// Check to see if the user's guess is in the selected word
+					if (word[i] == guess) {
+						// Fill in the board with the letter
+						selection[i] = guess;
+						// Update the remaining number of letters that need to be guessed
+						remainder--;
+						// Set the flag "correct" equal to true
+						correct = true;
+					}
+					// If the user's guess is not part of the selected word, decrement the number of guesses the user has left
+				}
+				if (correct == false) {
+					numOfGuess--;
+				}
+				// Show the user's current progress
+				alert(selection.join(" "));
+				// If the user has no more guesses left, break out of the while loop
+				if ((remainder == 0) || (numOfGuess == 0)) {
+                    if (numOfGuess == 0) {
+                        alert("Sorry! You've run out of guesses! Game over!");
+                    }
+					else {
+						alert("Good job! You've won!");
+					}
+					alert("The correct answer was " + word);
+					again = confirm("Would you like to play again?\nSelect \"again\" for yes or \"Cancel\" for no.");
+					if (again == false) {
+                        break;
+					}
+				}
+			}
+		}
+	</script>
+</body>
 </html>
