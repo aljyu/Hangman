@@ -1,9 +1,35 @@
 <!DOCTYPE html>
 <head>
 	<title>Hangman</title>
+	<!-- Internal CSS style sheet -->
+	<style>
+		h2 {
+			text-align: center;
+		}
+		#welcome {
+			text-align: center;
+		}
+		#startGame {
+			margin: auto;
+			display: block;
+		}
+	</style>
 </head>
 <body>
-	<h1>Welcome to Hangman!</h1></br>
+	<!-- The results of the following JavaScript block will be displayed here -->
+	<h1 id = "welcome"></h1>
+	<script>
+		// Take in the user's name so that they can be properly greeted
+		var user = prompt("What is your name?");
+		document.getElementById("welcome").innerHTML = "Welcome to Hangman, " + user + "!";
+	</script>
 	<h2>Let's play!</h2>
+	<br /><br />
+	<button id = "startGame">Click here to play</button>
+	<script>
+		document.getElementById("startGame").onclick = function() {
+			location.href = "file:///C:/Users/Alice/Documents/Senior%20Year%20(2016-2017)/Side%20Projects/JavaScript/Programs/Hangman/newGame.html";
+		};
+	</script>
 </body>
 </html>
