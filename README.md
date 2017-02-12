@@ -1,5 +1,5 @@
 # Hangman
-Simple Hangman game written in JavaScript.
+Simple Hangman game written in HTML, CSS, and JavaScript.
 
 This game was written in order to practice self-taught JavaScript concepts.
 
